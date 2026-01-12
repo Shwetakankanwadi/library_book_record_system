@@ -1,4 +1,4 @@
-from library import LibraryBook
+from lib import LibraryBook
 
 def test_book_age_old():
     book = LibraryBook("B1", "Python", "Guido", 2018)
