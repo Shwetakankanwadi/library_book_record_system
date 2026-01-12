@@ -1,17 +1,23 @@
-from lib import LibraryBook
+from lib import display_books, total_books, book_category
 
-def test_book_age_old():
-    book = LibraryBook("B1", "Python", "Guido", 2018)
-    assert book.book_age() == "Old Book"
+def test_total_books():
+    book_ids = ["B1", "B2", "B3"]
+    assert total_books(book_ids) == 3
 
-def test_book_age_new():
-    book = LibraryBook("B2", "AI", "Andrew", 2022)
-    assert book.book_age() == "New Book"
+def test_book_category_old_and_new():
+    years = ["2018", "2021", "2019", "2023"]
+    old, new = book_category(years)
+    assert old == 2
+    assert new == 2
 
-def test_validate_book_valid():
-    book = LibraryBook("B3", "Java", "James", 2021)
-    assert book.validate_book() == "Valid Book"
+def test_book_category_all_new():
+    years = ["2020", "2021", "2022"]
+    old, new = book_category(years)
+    assert old == 0
+    assert new == 3
 
-def test_validate_book_invalid():
-    book = LibraryBook("", "", "Unknown", 2020)
-    assert book.validate_book() == "Invalid Book"
+def test_book_category_all_old():
+    years = ["2015", "2018", "2019"]
+    old, new = book_category(years)
+    assert old == 3
+    assert new == 0
